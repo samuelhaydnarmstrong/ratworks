@@ -5,7 +5,7 @@
   "main": "Hell on Wheels.audio.position.worklet.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "serve"
+    "serve": "serve build"
   },
   "author": "",
   "license": "ISC",
