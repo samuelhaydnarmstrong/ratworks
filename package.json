@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/Ratworks.audio.position.worklet.js",
   "scripts": {
-    "serve": "serve build"
+    "serve": "serve build/index.html"
   },
   "author": "",
   "license": "ISC",
