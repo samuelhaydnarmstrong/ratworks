@@ -1,11 +1,10 @@
 {
-  "name": "frog",
+  "name": "ratworks",
   "version": "1.0.0",
   "description": "",
-  "main": "Hell on Wheels.audio.position.worklet.js",
+  "main": "build/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "serve build"
+    "serve": "serve build/Ratworks.html"
   },
   "author": "",
   "license": "ISC",
