@@ -2,7 +2,7 @@
   "name": "ratworks",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.html",
+  "main": "build/Ratworks.audio.position.worklet.js",
   "scripts": {
     "serve": "serve build"
   },
