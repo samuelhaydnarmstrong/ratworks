@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/index.html",
   "scripts": {
-    "serve": "serve build/Ratworks.html"
+    "serve": "serve build"
   },
   "author": "",
   "license": "ISC",
