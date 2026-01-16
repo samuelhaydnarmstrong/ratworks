@@ -50,13 +50,12 @@ func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() == true:
 		if event.get_button_index() == 1:
 			if (event.position.distance_to($Rail.get_point_position($Rail.get_point_count()-1)) < 10):
-				shadowRail.set(0, event.position)
 				shadowRail.set(1,event.position)
 				$ShadowRail.points = shadowRail
 				$ShadowRail.visible = true
 				selectedController = "Rail"
 				$Label.text = "Rail selected"
-				print("Close!")
+				return
 			
 			if (selectedController == "Surveyor" && selectedTileType != WATER):
 				desiredSurveyorPosition = event.position
