@@ -37,4 +37,3 @@ text = "Click to place rail and connect the coasts"
 [node name="Rail" type="Line2D" parent="."]
 width = 5.0
 default_color = Color(0.2159017, 0.21590173, 0.2159017, 1)
-joint_mode = 1
