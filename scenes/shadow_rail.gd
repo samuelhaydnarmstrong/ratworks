@@ -12,7 +12,6 @@ extends Line2D
 @onready var fogOfWar = get_node('../FogOfWar')
 
 func _on_timer_timeout() -> void:
-	print("Placing rail? " +str(main.isPlacingRail))
 	if (main.isPlacingRail):
 		var shadowStartX = pixelsToGrid(self.get_point_position(0).x)
 		var shadowStartY = pixelsToGrid(self.get_point_position(0).y)
@@ -21,13 +20,11 @@ func _on_timer_timeout() -> void:
 		var isDangerousRoute = line(Vector2(shadowStartX, shadowStartY), Vector2(shadowEndX, shadowEndY))
 		var lengthOfShadowRail = self.get_point_position(0).distance_to(get_viewport().get_mouse_position())
 		if (lengthOfShadowRail > main.money or isDangerousRoute):
-			self.set_default_color(Color(1, 0, 0, 1))
+			self.set_default_color(Color(1.0, 0.0, 0.0, 0.2))
 			main.isRailValid = false
 		else:
-			self.set_default_color(Color(0, 1, 0, 1))
+			self.set_default_color(Color(0, 1, 0, 0.2))
 			main.isRailValid = true
-	print("Set isRailValid " + str(main.isRailValid))
-	print("Visible " + str(self.visible))
 
 func line(p0, p1):
 	var N = diagonal_distance(p0, p1)

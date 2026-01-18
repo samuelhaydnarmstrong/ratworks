@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dmrt6t2vmajwi"]
+[gd_scene load_steps=21 format=4 uid="uid://dmrt6t2vmajwi"]
 
 [ext_resource type="Script" uid="uid://drywyyj1nxdb3" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://co3vjucx0h4og" path="res://scenes/tilemap2.png" id="2_0wfyh"]
@@ -36,9 +36,35 @@ sources/0 = SubResource("TileSetAtlasSource_sugp2")
 shader = ExtResource("6_choun")
 shader_parameter/progress = 0.0
 
+[sub_resource type="Gradient" id="Gradient_choun"]
+colors = PackedColorArray(0, 0, 0, 1, 0.22001922, 0.74528974, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ya4ey"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eb6dy"]
+gradient = SubResource("Gradient_ya4ey")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tefeu"]
 texture = ExtResource("5_tbgi4")
 texture_region_size = Vector2i(64, 64)
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+0:3/0 = 0
 0:0/0 = 0
 0:1/0 = 0
 0:1/0/custom_data_0 = true
@@ -75,12 +101,16 @@ visible = false
 script = ExtResource("5_tipki")
 
 [node name="ShadowTimer" type="Timer" parent="ShadowRail"]
-wait_time = 0.2
 autostart = true
 
 [node name="Rail" type="Line2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+self_modulate = Color(1, 1, 0, 1)
 material = SubResource("ShaderMaterial_ya4ey")
 width = 5.0
+default_color = Color(1, 0, 1, 1)
+gradient = SubResource("Gradient_choun")
+texture = SubResource("GradientTexture2D_eb6dy")
 texture_mode = 2
 joint_mode = 1
 script = ExtResource("6_ya4ey")

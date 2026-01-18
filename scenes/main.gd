@@ -47,13 +47,13 @@ func _input(event):
 			if event.get_button_index() == 1:
 				# If we're placing rail
 				if ($Rail.get_point_count() and isRailValid and isPlacingRail):
-					$Rail.add_point(Vector2(event.position.x, event.position.y))
+					$Rail.add_point_override(Vector2(event.position.x, event.position.y))
+					
 					$ShadowRail.set_point_position(0, event.position)
 					update_money(money - int(floor(lengthOfShadowRail)))
 					await get_tree().create_timer(0.2).timeout
 					$LastRailPoint.position = event.position
 					track_started.emit()
-					
 					# Check if the player has clicked on a EAST coast tile
 					if(selectedTileType == 'coast' and event.position.x > get_viewport().get_visible_rect().size.x / 2):
 						$ShadowRail.visible = false
