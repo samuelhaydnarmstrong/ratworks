@@ -83,29 +83,5 @@ offset_bottom = 807.0
 text = "Bridging (100)
 "
 
-[node name="Helper" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Helper"]
-offset_right = 768.0
-offset_bottom = 96.0
-color = Color(1, 1, 1, 0.39607844)
-
-[node name="Label" type="Label" parent="Helper"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 688.0
-offset_bottom = 144.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Click on a coast tile to start placing rail to connect to the other coast. ESC unselects units and features. Hint: You'll need to train a Surveyor at the station to reveal the map before placing track"
-autowrap_mode = 2
-
-[node name="Button" type="Button" parent="Helper"]
-offset_left = 712.0
-offset_top = 8.0
-offset_right = 762.0
-offset_bottom = 39.0
-text = "Close"
-
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/SurveyorButton" to="." method="_on_surveyor_button_pressed"]
-[connection signal="pressed" from="Helper/Button" to="." method="_on_button_pressed"]

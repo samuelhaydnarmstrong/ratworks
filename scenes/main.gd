@@ -19,6 +19,7 @@ func _ready():
 	get_viewport().physics_object_picking_sort = true
 	get_viewport().physics_object_picking_first_only = true
 	$ShadowRail.points = PackedVector2Array([Vector2(0,0), Vector2(0,0)])
+	DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/welcome.dialogue"), "start")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -28,7 +29,6 @@ func pixelsToGrid(pixelPosition):
 	return floor(pixelPosition / 64)
 
 func _input(event):
-	
 	if Input.is_action_just_pressed("Escape"):
 		$ShadowRail.visible = false
 		isPlacingRail = false

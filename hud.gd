@@ -20,14 +20,8 @@ func _on_main_update_selected_feature(selectedFeature: Dictionary) -> void:
 	else:
 		$StationOptions.visible = false
 
-
 func _on_main_game_won() -> void:
 	$SelectedFeature.text = "You win!"
-
-
-func _on_button_pressed() -> void:
-	$Helper.visible = false
-
 
 func _on_track_pressed() -> void:
 	place_first_track.emit()
