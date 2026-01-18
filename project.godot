@@ -13,7 +13,11 @@ config_version=5
 config/name="Ratworks"
 run/main_scene="uid://dmrt6t2vmajwi"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://dd1waongjmjgu"
 config/icon="res://favicon.png"
+boot_splash/minimum_display_time=1000
 
 [display]
 
