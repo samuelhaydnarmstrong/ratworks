@@ -35,7 +35,7 @@ func line(p0, p1):
 		var cellToCross = round_point(lerp_point(p0, p1, t))
 		var isFog = fogOfWar.get_cell_tile_data(cellToCross).get_custom_data('isFog')
 		var biome = tileMapLayer.get_cell_tile_data(cellToCross).get_custom_data('name')
-		if (biome == "water" or biome == "mountain" or isFog):
+		if (biome == "water" or isFog or (biome == "mountain" and !main.hasTunnellingSkill)):
 			return true;
 		step+=1
 	return isDangerous;

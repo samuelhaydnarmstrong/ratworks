@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal buy_surveyor
+signal buy_tunnelling
 signal place_first_track
 
 func _on_surveyor_button_pressed() -> void:
@@ -20,12 +21,11 @@ func _on_main_update_selected_feature(selectedFeature: Dictionary) -> void:
 	else:
 		$StationOptions.visible = false
 
-func _on_main_game_won() -> void:
-	$SelectedFeature.text = "You win!"
-
 func _on_track_pressed() -> void:
 	place_first_track.emit()
 
-
 func _on_main_track_started() -> void:
 	$StationOptions/Track.visible = false
+
+func _on_tunnelling_pressed() -> void:
+	buy_tunnelling.emit()

@@ -85,3 +85,4 @@ text = "Bridging (100)
 
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/SurveyorButton" to="." method="_on_surveyor_button_pressed"]
+[connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]

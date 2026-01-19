@@ -1,0 +1,17 @@
+~ start_game
+Welcome to the Ratworks demo!
+Click on a coast tile to place your first station
+ESC unselects units and features
+Hint: You'll need to train a Surveyor at the station to reveal the map and find the east coast
+=> END
+
+~ end_game
+Congratulations, you've constructed the first transcontinental railroad!
+=> END
+
+~ homestead
+Homesteader: Well, well, well...
+Homesteader: Go away city boy!
+- Ok!
+- Or what!?
+	Homesteader: Or I'm gonna kill ya!

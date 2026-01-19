@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://dmrt6t2vmajwi"]
+[gd_scene load_steps=23 format=4 uid="uid://dmrt6t2vmajwi"]
 
 [ext_resource type="Script" uid="uid://drywyyj1nxdb3" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://co3vjucx0h4og" path="res://scenes/tilemap2.png" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b3x524f6m4i62" path="res://surveyor.tscn" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://ccamo22oq2aty" path="res://station.png" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://dhu4ntwfbha75" path="res://scenes/tile_map_layer.gd" id="5_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://dtrnfiyyelqab" path="res://scenes/fogofwar.png" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://c4wn7f84g47w6" path="res://scenes/shadow_rail.gd" id="5_tipki"]
 [ext_resource type="Shader" uid="uid://chjt1pt14yblo" path="res://scenes/rail.gdshader" id="6_choun"]
@@ -11,6 +12,8 @@
 [ext_resource type="Script" uid="uid://bn8y2ks4mymdt" path="res://scenes/rail.gd" id="6_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://1k7r008g2o71" path="res://camera_parent.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dinc8uu5ax87a" path="res://scenes/dialogue/balloon.tscn" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://bxkivd5yy2qtk" path="res://scenes/homestead.gd" id="12_trceg"]
+[ext_resource type="Texture2D" uid="uid://cm3i4ouajw666" path="res://homestead.png" id="13_a8y0u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -32,6 +35,9 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
+size = Vector2(32, 32)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
 shader = ExtResource("6_choun")
@@ -58,9 +64,12 @@ surveyor_scene = ExtResource("2_tbgi4")
 
 [node name="ExampleBalloon" parent="." instance=ExtResource("11_ya4ey")]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["MainMap"]]
+[node name="TileMapLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("main", "fogOfWar") groups=["MainMap"]]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAkAAAAAAAAAAAABAAgAAAAAAAAAAAABAAcAAAAAAAAAAAABAAYAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAABAAAAAAAAAAAAAAAKAAAAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAIAAAAAAAEAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAUAAAAAAAEAAAAKAAYAAAAAAAEAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAJAAAAAAABAAAAAAAJAAEAAAABAAAAAAAJAAIAAAABAAAAAAAJAAMAAAABAAAAAAAJAAQAAAABAAAAAAAJAAUAAAABAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAEAAAABAAoAAAAAAAEAAAACAAoAAAAAAAEAAAACAAkAAAAAAAEAAAACAAgAAAAAAAEAAAACAAcAAAAAAAEAAAACAAYAAAAAAAEAAAACAAUAAAAAAAEAAAABAAUAAAAAAAEAAAABAAQAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAAAAAEAAAACAAIAAAAAAAEAAAACAAEAAAAAAAEAAAACAAAAAAAAAAEAAAAIAAAAAAAAAAAAAAAIAAEAAAABAAAAAAAIAAIAAAABAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAIAAUAAAABAAAAAAAIAAYAAAABAAAAAAAJAAYAAAAAAAEAAAAJAAcAAAAAAAEAAAAJAAgAAAAAAAEAAAAJAAkAAAAAAAEAAAAJAAoAAAAAAAEAAAAJAAsAAAAAAAEAAAAIAAsAAAABAAAAAAAHAAsAAAAAAAAAAAAGAAsAAAAAAAIAAAAFAAsAAAAAAAIAAAAEAAsAAAAAAAIAAAADAAsAAAABAAAAAAACAAsAAAABAAAAAAADAAoAAAABAAAAAAADAAkAAAABAAAAAAADAAgAAAABAAAAAAADAAcAAAABAAAAAAADAAYAAAABAAAAAAADAAUAAAABAAAAAAADAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAIAAAABAAAAAAADAAMAAAABAAAAAAADAAEAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAAAAAIAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAHAAEAAAABAAAAAAAHAAIAAAAAAAIAAAAHAAMAAAAAAAIAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAIAAAAGAAYAAAAAAAIAAAAHAAYAAAAAAAAAAAAHAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAcAAAABAAAAAAAIAAgAAAABAAAAAAAIAAkAAAABAAAAAAAIAAoAAAABAAAAAAAHAAoAAAABAAAAAAAHAAkAAAABAAAAAAAGAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAFAAkAAAAAAAIAAAAFAAgAAAABAAAAAAAFAAcAAAABAAAAAAAFAAYAAAAAAAIAAAAFAAUAAAAAAAIAAAAGAAcAAAAAAAIAAAAGAAgAAAABAAAAAAAGAAkAAAAAAAIAAAAGAAQAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAABAAAAAAAGAAEAAAABAAAAAAAFAAEAAAAAAAIAAAAFAAIAAAAAAAIAAAAFAAMAAAAAAAIAAAAFAAQAAAAAAAIAAAAEAAkAAAAAAAIAAAAEAAoAAAAAAAIAAAAEAAgAAAABAAAAAAAEAAcAAAABAAAAAAAEAAYAAAABAAAAAAAEAAUAAAABAAAAAAAEAAQAAAABAAAAAAAEAAMAAAABAAAAAAAEAAIAAAABAAAAAAAEAAEAAAABAAAAAAAAAAwAAAAAAAAAAAABAAwAAAAAAAEAAAACAAwAAAABAAAAAAADAAwAAAABAAAAAAAEAAwAAAAAAAIAAAAFAAwAAAAAAAIAAAAGAAwAAAAAAAIAAAAHAAwAAAAAAAAAAAAIAAwAAAABAAAAAAAJAAwAAAAAAAEAAAAKAAwAAAAAAAAAAAALAAwAAAAAAAAAAAALAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAAJAA0AAAAAAAEAAAAIAA0AAAABAAAAAAAHAA0AAAAAAAAAAAAGAA0AAAAAAAIAAAAFAA0AAAAAAAIAAAAEAA0AAAAAAAIAAAADAA0AAAABAAAAAAACAA0AAAABAAAAAAABAA0AAAAAAAEAAAAAAA0AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_jyhfs")
+script = ExtResource("5_a8y0u")
+main = NodePath("..")
+fogOfWar = NodePath("../FogOfWar")
 
 [node name="Station" type="Area2D" parent="."]
 position = Vector2(-35, 39)
@@ -71,6 +80,17 @@ shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Station"]
 texture = ExtResource("4_jyhfs")
+
+[node name="Homestead" type="Area2D" parent="."]
+position = Vector2(480, 96)
+script = ExtResource("12_trceg")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Homestead"]
+texture = ExtResource("13_a8y0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Homestead"]
+shape = SubResource("RectangleShape2D_jkv2x")
 
 [node name="ShadowRail" type="Line2D" parent="."]
 visible = false
@@ -90,7 +110,7 @@ script = ExtResource("6_ya4ey")
 [node name="RailAnimationTimer" type="Timer" parent="Rail"]
 wait_time = 0.5
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MoneyTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
@@ -110,14 +130,16 @@ shape = SubResource("CircleShape2D_tbgi4")
 [node name="CameraParent" parent="." instance=ExtResource("7_o6xl0")]
 position = Vector2(384, 424)
 
-[connection signal="game_won" from="." to="HUD" method="_on_main_game_won"]
 [connection signal="track_started" from="." to="HUD" method="_on_main_track_started"]
 [connection signal="update_selected_feature" from="." to="HUD" method="_on_main_update_selected_feature"]
 [connection signal="child_entered_tree" from="TileMapLayer" to="." method="_on_tile_map_layer_child_entered_tree"]
 [connection signal="input_event" from="Station" to="." method="_on_station_input_event"]
+[connection signal="area_entered" from="Homestead" to="Homestead" method="_on_area_entered"]
+[connection signal="body_entered" from="Homestead" to="Homestead" method="_on_body_entered"]
 [connection signal="timeout" from="ShadowRail/ShadowTimer" to="ShadowRail" method="_on_timer_timeout"]
 [connection signal="timeout" from="Rail/RailAnimationTimer" to="Rail" method="_on_rail_animation_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MoneyTimer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="LastRailPoint" to="." method="_on_last_rail_point_input_event"]
 [connection signal="buy_surveyor" from="HUD" to="." method="_on_hud_buy_surveyor"]
+[connection signal="buy_tunnelling" from="HUD" to="." method="_on_hud_buy_tunnelling"]
 [connection signal="place_first_track" from="HUD" to="." method="_on_hud_place_first_track"]

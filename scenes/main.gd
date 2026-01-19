@@ -5,13 +5,13 @@ var isPlacingRail = false
 
 var selectedFeature: Dictionary
 var nextUnitIdToAssign = 0
+var hasTunnellingSkill = false
 
 var money = 0
 
 @export var surveyor_scene: PackedScene
 
 signal update_selected_feature
-signal game_won
 signal track_started
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,7 @@ func _ready():
 	get_viewport().physics_object_picking_sort = true
 	get_viewport().physics_object_picking_first_only = true
 	$ShadowRail.points = PackedVector2Array([Vector2(0,0), Vector2(0,0)])
-	DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/welcome.dialogue"), "start")
+	DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "start_game")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -43,7 +43,7 @@ func _input(event):
 		if isPlacingRail:
 			$ShadowRail.set_point_position(1, event.position)
 
-		if event is InputEventMouseButton and event.is_pressed() == true:
+		if event is InputEventMouseButton and event.is_pressed() == true:			
 			if event.get_button_index() == 1:
 				# If we're placing rail
 				if ($Rail.get_point_count() and isRailValid and isPlacingRail):
@@ -58,7 +58,8 @@ func _input(event):
 					if(selectedTileType == 'coast' and event.position.x > get_viewport().get_visible_rect().size.x / 2):
 						$ShadowRail.visible = false
 						isPlacingRail = false
-						game_won.emit()
+						DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "end_game")
+						$MoneyTimer.stop()
 				
 				# If we're placing the first station check if the player has clicked on a WEST coast tile
 				elif(!$Rail.get_point_count() and selectedTileType == 'coast' and event.position.x < get_viewport().get_visible_rect().size.x / 2):				
@@ -103,3 +104,11 @@ func _on_hud_place_first_track() -> void:
 	$ShadowRail.set_point_position(0, $Station.position)
 	$ShadowRail.set_point_position(1, $Station.position)
 	$ShadowRail.visible = true
+	local_update_selected_feature({"name": "Track", "id": -1})
+
+func _on_hud_buy_tunnelling() -> void:
+	if (money > 100):
+		update_money(money - 100)
+		hasTunnellingSkill = true
+		$HUD/StationOptions/Tunnelling.visible = false
+		
