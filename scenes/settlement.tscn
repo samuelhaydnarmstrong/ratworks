@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3t7sd8evr40"]
+
+[ext_resource type="Script" uid="uid://bxkivd5yy2qtk" path="res://scenes/homestead.gd" id="1_w8r1k"]
+[ext_resource type="Texture2D" uid="uid://cm3i4ouajw666" path="res://homestead.png" id="2_87fap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
+size = Vector2(32, 32)
+
+[node name="Settlement" type="Area2D"]
+script = ExtResource("1_w8r1k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_87fap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jkv2x")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -44.0
+offset_top = 7.0
+offset_right = 44.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "Homestead"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

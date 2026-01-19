@@ -1,14 +1,14 @@
 extends Area2D
 
+@export var dialogueFile: DialogueResource
+@export var settlementName: String
+@export var dialogueFileSection: String
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	$Label.text = settlementName
 
 func _on_area_entered(area: Area2D) -> void:
-	DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "homestead")
+	if area.name == 'LastRailPoint':
+		DialogueManager.show_dialogue_balloon(dialogueFile, 'settlement_connected')
+	if dialogueFile and dialogueFileSection:
+		DialogueManager.show_dialogue_balloon(dialogueFile, dialogueFileSection)

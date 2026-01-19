@@ -15,3 +15,8 @@ Homesteader: Go away city boy!
 - Ok!
 - Or what!?
 	Homesteader: Or I'm gonna kill ya!
+=> END
+
+~ settlement_connected
+Settlement connected to the railway
+=> END

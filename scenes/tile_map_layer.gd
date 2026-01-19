@@ -23,5 +23,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 			var isFog = fog_data.get_custom_data("isFog")
 			var selectedTileType = tile_data.get_custom_data("name")
+			
+			var tileStatus = tile_data.get_custom_data("status")
+			if tileStatus:
+				selectedTileType = selectedTileType + " (" + tileStatus + ") "
 
 			main.local_update_selected_feature({"name": 'fog' if isFog else selectedTileType, "id": -1})
