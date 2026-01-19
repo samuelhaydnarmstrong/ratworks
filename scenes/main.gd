@@ -53,7 +53,9 @@ func _input(event):
 					update_money(money - int(floor(lengthOfShadowRail)))
 					await get_tree().create_timer(0.2).timeout
 					$LastRailPoint.position = event.position
-					track_started.emit()
+					if $Rail.get_point_count() == 2:
+						print("Track started for the first time")
+						track_started.emit()
 					# Check if the player has clicked on a EAST coast tile
 					if(selectedTileType == 'coast' and event.position.x > get_viewport().get_visible_rect().size.x / 2):
 						$ShadowRail.visible = false
