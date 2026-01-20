@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=1000
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Globals="*res://globals.gd"
 
 [dialogue_manager]
 
@@ -29,8 +30,8 @@ runtime/balloon_path="res:///balloon.tscn"
 
 [display]
 
-window/size/viewport_width=768
-window/size/viewport_height=848
+window/size/viewport_width=1080
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

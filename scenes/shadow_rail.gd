@@ -19,7 +19,7 @@ func _on_timer_timeout() -> void:
 		var shadowEndY = pixelsToGrid(self.get_point_position(1).y)
 		var isDangerousRoute = line(Vector2(shadowStartX, shadowStartY), Vector2(shadowEndX, shadowEndY))
 		var lengthOfShadowRail = self.get_point_position(0).distance_to(get_viewport().get_mouse_position())
-		if (lengthOfShadowRail > main.money or isDangerousRoute):
+		if (lengthOfShadowRail > Globals.money or isDangerousRoute):
 			self.set_default_color(Color(1.0, 0.0, 0.0, 0.2))
 			main.isRailValid = false
 		else:

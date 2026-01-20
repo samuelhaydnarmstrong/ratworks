@@ -3,12 +3,10 @@ extends CanvasLayer
 signal buy_surveyor
 signal buy_tunnelling
 signal place_first_track
+signal open_inventory
 
 func _on_surveyor_button_pressed() -> void:
 	buy_surveyor.emit()
-
-func update_money(newMoney):
-	$Money.text = str(newMoney)
 
 func _on_main_update_selected_feature(selectedFeature: Dictionary) -> void:
 	if selectedFeature:
@@ -29,3 +27,9 @@ func _on_main_track_started() -> void:
 
 func _on_tunnelling_pressed() -> void:
 	buy_tunnelling.emit()
+
+func _on_inventory_pressed() -> void:
+	open_inventory.emit()
+
+func _on_money_refresh_timeout() -> void:
+	$Money.text = str(Globals.money)

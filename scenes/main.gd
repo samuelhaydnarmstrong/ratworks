@@ -7,8 +7,6 @@ var selectedFeature: Dictionary
 var nextUnitIdToAssign = 0
 var hasTunnellingSkill = false
 
-var money = 0
-
 @export var surveyor_scene: PackedScene
 
 signal update_selected_feature
@@ -37,7 +35,12 @@ func _input(event):
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		var mouseGridX = pixelsToGrid(event.position.x)
 		var mouseGridY = pixelsToGrid(event.position.y)
-		var selectedTileType = $TileMapLayer.get_cell_tile_data(Vector2(mouseGridX,mouseGridY)).get_custom_data('name')
+		
+		var selectedCell = $TileMapLayer.get_cell_tile_data(Vector2(mouseGridX,mouseGridY))
+		var selectedTileType
+		if (selectedCell):
+			selectedTileType = $TileMapLayer.get_cell_tile_data(Vector2(mouseGridX,mouseGridY)).get_custom_data('name')
+		
 		var lengthOfShadowRail = $ShadowRail.get_point_position(0).distance_to(event.position)
 
 		if isPlacingRail:
@@ -50,7 +53,7 @@ func _input(event):
 					$Rail.add_point_override(Vector2(event.position.x, event.position.y))
 					
 					$ShadowRail.set_point_position(0, event.position)
-					update_money(money - int(floor(lengthOfShadowRail)))
+					Globals.money = Globals.money - int(floor(lengthOfShadowRail))
 					await get_tree().create_timer(0.2).timeout
 					$LastRailPoint.position = event.position
 					if $Rail.get_point_count() == 2:
@@ -73,11 +76,7 @@ func _input(event):
 					$Station.position = event.position
 					
 func _on_timer_timeout() -> void:
-	update_money(money+1)
-	
-func update_money(newMoney):
-	money = int(newMoney)
-	$HUD.update_money(money)
+	Globals.money = Globals.money + 1
 
 func _on_last_rail_point_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
@@ -109,8 +108,8 @@ func _on_hud_place_first_track() -> void:
 	local_update_selected_feature({"name": "Track", "id": -1})
 
 func _on_hud_buy_tunnelling() -> void:
-	if (money > 100):
-		update_money(money - 100)
+	if (Globals.money > 100):
+		Globals.money = Globals.money - 100
 		hasTunnellingSkill = true
 		$HUD/StationOptions/Tunnelling.visible = false
 		

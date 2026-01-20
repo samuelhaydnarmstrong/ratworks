@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://ybrko55rn3fe"]
+
+[ext_resource type="Script" uid="uid://gi58jbh8t1rn" path="res://inventory.gd" id="1_pohso"]
+
+[node name="Inventory" type="ColorRect"]
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 1016.0
+offset_bottom = 576.0
+color = Color(1, 1, 1, 0.81960785)
+script = ExtResource("1_pohso")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 83.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Inventory"
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 8.0
+offset_right = 946.0
+offset_bottom = 39.0
+text = "Close"
+
+[node name="WorkerCost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 64.0
+offset_right = 346.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="WorkerCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 250.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="CostLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 39.0
+offset_right = 356.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost"
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 39.0
+offset_right = 260.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Quantity"
+
+[node name="WorkerLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 64.0
+offset_right = 130.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Worker"
+
+[node name="WorkerBuyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 62.0
+offset_right = 400.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 14
+text = "Buy"
+
+[node name="BudgetTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="WorkerBuyButton" to="." method="_on_worker_buy_button_pressed"]
+[connection signal="timeout" from="BudgetTimer" to="." method="_on_budget_timer_timeout"]
