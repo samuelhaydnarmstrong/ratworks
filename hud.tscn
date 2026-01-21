@@ -42,53 +42,39 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 position = Vector2(0, 640)
 
 [node name="Track" type="Button" parent="StationOptions"]
-offset_left = 536.0
+offset_left = 744.0
 offset_top = 8.0
-offset_right = 664.0
+offset_right = 872.0
 offset_bottom = 39.0
 text = "Start Track"
 
-[node name="SurveyorButton" type="Button" parent="StationOptions"]
-offset_left = 952.0
-offset_top = 8.0
-offset_right = 1071.0
-offset_bottom = 39.0
-text = "Surveyor (100)"
-
 [node name="Tunnelling" type="Button" parent="StationOptions"]
-offset_left = 752.0
+offset_left = 944.0
 offset_top = 42.0
-offset_right = 883.0
+offset_right = 1075.0
 offset_bottom = 73.0
 text = "Tunnelling (100)
 "
 
 [node name="Skills" type="Label" parent="StationOptions"]
-offset_left = 696.0
-offset_right = 744.0
+offset_left = 888.0
+offset_right = 936.0
 offset_bottom = 80.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Skills"
 
-[node name="Units" type="Label" parent="StationOptions"]
-offset_left = 896.0
-offset_right = 944.0
-offset_bottom = 80.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Units"
-
 [node name="Bridging" type="Button" parent="StationOptions"]
-offset_left = 752.0
+offset_left = 944.0
 offset_top = 8.0
-offset_right = 883.0
+offset_right = 1075.0
 offset_bottom = 39.0
 text = "Bridging (100)
 "
 
 [node name="Inventory" type="Button" parent="StationOptions"]
-offset_left = 536.0
+offset_left = 744.0
 offset_top = 42.0
-offset_right = 665.0
+offset_right = 873.0
 offset_bottom = 73.0
 text = "Open Inventory"
 
@@ -97,7 +83,6 @@ autostart = true
 
 [connection signal="open_inventory" from="." to="Inventory" method="_on_open_inventory"]
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
-[connection signal="pressed" from="StationOptions/SurveyorButton" to="." method="_on_surveyor_button_pressed"]
 [connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]
 [connection signal="pressed" from="StationOptions/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="timeout" from="MoneyRefresh" to="." method="_on_money_refresh_timeout"]

@@ -84,7 +84,18 @@ text = "Buy"
 [node name="BudgetTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="DispatchButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 62.0
+offset_right = 484.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = "Dispatch"
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="WorkerBuyButton" to="." method="_on_worker_buy_button_pressed"]
 [connection signal="timeout" from="BudgetTimer" to="." method="_on_budget_timer_timeout"]
+[connection signal="pressed" from="DispatchButton" to="." method="_on_dispatch_button_pressed"]

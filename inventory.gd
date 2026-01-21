@@ -1,10 +1,12 @@
 extends ColorRect
 
+signal dispatch_unit
+
 var inventory = Dictionary({
 	"worker": 0,
 })
 
-const WORKER_COST = 500
+const WORKER_COST = 10
 
 func _on_close_pressed() -> void:
 	visible = false
@@ -25,3 +27,11 @@ func _on_budget_timer_timeout() -> void:
 		$WorkerBuyButton.disabled = false
 	else:
 		$WorkerBuyButton.disabled = true
+	if inventory.worker > 0:
+		$DispatchButton.disabled = false
+	else:
+		$DispatchButton.disabled = true
+
+func _on_dispatch_button_pressed() -> void:
+	dispatch_unit.emit()
+	visible = false

@@ -12,12 +12,15 @@ var hasTunnellingSkill = false
 signal update_selected_feature
 signal track_started
 
+@onready var inventory = get_node('HUD/Inventory')
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_viewport().physics_object_picking_sort = true
 	get_viewport().physics_object_picking_first_only = true
 	$ShadowRail.points = PackedVector2Array([Vector2(0,0), Vector2(0,0)])
 	DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "start_game")
+	inventory.dispatch_unit.connect(_on_inventory_dispatch_unit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -89,7 +92,7 @@ func _on_station_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
 		local_update_selected_feature({"name": "Station", "id": -1})
 
-func _on_hud_buy_surveyor() -> void:
+func _on_inventory_dispatch_unit() -> void:
 	var surveyor = surveyor_scene.instantiate()
 	surveyor.id = nextUnitIdToAssign
 	nextUnitIdToAssign = nextUnitIdToAssign + 1

@@ -1,12 +1,8 @@
 extends CanvasLayer
 
-signal buy_surveyor
 signal buy_tunnelling
 signal place_first_track
 signal open_inventory
-
-func _on_surveyor_button_pressed() -> void:
-	buy_surveyor.emit()
 
 func _on_main_update_selected_feature(selectedFeature: Dictionary) -> void:
 	if selectedFeature:

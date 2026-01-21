@@ -162,6 +162,5 @@ settlementName = "Capital"
 [connection signal="timeout" from="Rail/RailAnimationTimer" to="Rail" method="_on_rail_animation_timer_timeout"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="LastRailPoint" to="." method="_on_last_rail_point_input_event"]
-[connection signal="buy_surveyor" from="HUD" to="." method="_on_hud_buy_surveyor"]
 [connection signal="buy_tunnelling" from="HUD" to="." method="_on_hud_buy_tunnelling"]
 [connection signal="place_first_track" from="HUD" to="." method="_on_hud_place_first_track"]
