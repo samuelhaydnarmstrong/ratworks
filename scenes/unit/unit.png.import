@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnr81e8v8te12"
-path="res://.godot/imported/surveyor.png-679deac9a0a119cc56b767143a916b0a.ctex"
+path="res://.godot/imported/unit.png-822f839cd16866e1b6d06859d1bfb419.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://surveyor.png"
-dest_files=["res://.godot/imported/surveyor.png-679deac9a0a119cc56b767143a916b0a.ctex"]
+source_file="res://scenes/unit/unit.png"
+dest_files=["res://.godot/imported/unit.png-822f839cd16866e1b6d06859d1bfb419.ctex"]
 
 [params]
 

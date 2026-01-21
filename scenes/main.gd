@@ -7,7 +7,7 @@ var selectedFeature: Dictionary
 var nextUnitIdToAssign = 0
 var hasTunnellingSkill = false
 
-@export var surveyor_scene: PackedScene
+@export var unit_scene: PackedScene
 
 signal update_selected_feature
 signal track_started
@@ -93,11 +93,11 @@ func _on_station_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		local_update_selected_feature({"name": "Station", "id": -1})
 
 func _on_inventory_dispatch_unit() -> void:
-	var surveyor = surveyor_scene.instantiate()
-	surveyor.id = nextUnitIdToAssign
+	var unit = unit_scene.instantiate()
+	unit.id = nextUnitIdToAssign
 	nextUnitIdToAssign = nextUnitIdToAssign + 1
-	surveyor.position = $Rail.get_point_position(0) + Vector2(0, 20)
-	add_child(surveyor)
+	unit.position = $Rail.get_point_position(0) + Vector2(0, 20)
+	add_child(unit)
 	
 func local_update_selected_feature(feature: Dictionary) -> void:
 	selectedFeature = feature
