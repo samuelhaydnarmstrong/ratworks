@@ -6,7 +6,6 @@ func _ready():
 	await get_tree().process_frame
 	var tilemaps = get_tree().get_nodes_in_group("MainMap")
 	for map in tilemaps:
-		print(map.name)
 		if map.name == "TileMapLayer":
 			tilemap = map
 	

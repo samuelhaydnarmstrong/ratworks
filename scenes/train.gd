@@ -30,11 +30,6 @@ func move_train():
 	# Continue animation
 	tween.tween_callback(move_train)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton && event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		main.local_update_selected_feature({"name": 'train', "id": -1})
-
-
 func _on_main_track_started() -> void:
 	position = Station.position
 	move_train()

@@ -4,7 +4,6 @@ var progress = 0;
 var length = 0
 
 func _on_rail_animation_timer_timeout() -> void:
-	print("Setting progress", progress)
 	if (progress < 1):
 		progress+= 0.05
 	elif (progress > 1):
@@ -20,7 +19,6 @@ func add_point_override(newPoint: Vector2) -> void:
 	if self.get_point_count() > 0:
 		var lengthAddition = self.get_point_position(self.get_point_count()-1).distance_to(newPoint)
 		var completedLength = 0 if progress == 0 else length * progress
-		print('Completed Length ' + str(completedLength) + " of full length: " + str(length))
 		progress = completedLength / (length+lengthAddition)
 		material.set_shader_parameter('progress', progress)
 		length = length + lengthAddition

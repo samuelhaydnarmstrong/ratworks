@@ -3,13 +3,11 @@ extends Node
 var isRailValid: bool
 var isPlacingRail = false
 
-var selectedFeature: Dictionary
 var nextUnitIdToAssign = 0
 var hasTunnellingSkill = false
 
 @export var unit_scene: PackedScene
 
-signal update_selected_feature
 signal track_started
 
 @onready var inventory = get_node('HUD/Inventory')
@@ -33,8 +31,7 @@ func _input(event):
 	if Input.is_action_just_pressed("Escape"):
 		$ShadowRail.visible = false
 		isPlacingRail = false
-		local_update_selected_feature({})
-	
+		Globals.selectedNode = null
 	if event is InputEventMouseButton or event is InputEventMouseMotion:
 		var mouseGridX = pixelsToGrid(event.position.x)
 		var mouseGridY = pixelsToGrid(event.position.y)
@@ -60,7 +57,6 @@ func _input(event):
 					await get_tree().create_timer(0.2).timeout
 					$LastRailPoint.position = event.position
 					if $Rail.get_point_count() == 2:
-						print("Track started for the first time")
 						track_started.emit()
 					# Check if the player has clicked on a EAST coast tile
 					if(selectedTileType == 'coast' and event.position.x > get_viewport().get_visible_rect().size.x / 2):
@@ -86,29 +82,26 @@ func _on_last_rail_point_input_event(viewport: Node, event: InputEvent, shape_id
 		$ShadowRail.set_point_position(1, event.position)
 		$ShadowRail.visible = true
 		isPlacingRail = true
-		local_update_selected_feature({"name": "Track", "id": -1})
+		Globals.selectedNode = $Rail
 
 func _on_station_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
-		local_update_selected_feature({"name": "Station", "id": -1})
+		Globals.selectedNode = $Station
 
-func _on_inventory_dispatch_unit() -> void:
+func _on_inventory_dispatch_unit(transferInventory: Dictionary) -> void:
 	var unit = unit_scene.instantiate()
 	unit.id = nextUnitIdToAssign
+	unit.inventory = transferInventory
 	nextUnitIdToAssign = nextUnitIdToAssign + 1
 	unit.position = $Rail.get_point_position(0) + Vector2(0, 20)
 	add_child(unit)
-	
-func local_update_selected_feature(feature: Dictionary) -> void:
-	selectedFeature = feature
-	update_selected_feature.emit(feature)
 
 func _on_hud_place_first_track() -> void:
 	isPlacingRail = true
 	$ShadowRail.set_point_position(0, $Station.position)
 	$ShadowRail.set_point_position(1, $Station.position)
 	$ShadowRail.visible = true
-	local_update_selected_feature({"name": "Track", "id": -1})
+	Globals.selectedNode = $Rail
 
 func _on_hud_buy_tunnelling() -> void:
 	if (Globals.money > 100):

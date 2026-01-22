@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dmrt6t2vmajwi"]
+[gd_scene load_steps=26 format=4 uid="uid://dmrt6t2vmajwi"]
 
 [ext_resource type="Script" uid="uid://drywyyj1nxdb3" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://co3vjucx0h4og" path="res://scenes/tilemap2.png" id="2_0wfyh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c4wn7f84g47w6" path="res://scenes/shadow_rail.gd" id="5_tipki"]
 [ext_resource type="Shader" uid="uid://chjt1pt14yblo" path="res://scenes/rail.gdshader" id="6_choun"]
 [ext_resource type="Script" uid="uid://gg8l6pgy4uxr" path="res://scenes/train.gd" id="6_jbj1t"]
+[ext_resource type="Script" uid="uid://ca2i1qu87p07y" path="res://scenes/station.gd" id="6_muem4"]
 [ext_resource type="PackedScene" uid="uid://bhbchgqecjgxk" path="res://hud.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://bn8y2ks4mymdt" path="res://scenes/rail.gd" id="6_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c3t7sd8evr40" path="res://scenes/settlement.tscn" id="7_jbj1t"]
@@ -81,6 +82,7 @@ fogOfWar = NodePath("../FogOfWar")
 
 [node name="Station" type="Area2D" parent="."]
 position = Vector2(-35, 39)
+script = ExtResource("6_muem4")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Station"]
@@ -155,7 +157,6 @@ settlementName = "Capital"
 
 [connection signal="track_started" from="." to="Train" method="_on_main_track_started"]
 [connection signal="track_started" from="." to="HUD" method="_on_main_track_started"]
-[connection signal="update_selected_feature" from="." to="HUD" method="_on_main_update_selected_feature"]
 [connection signal="child_entered_tree" from="TileMapLayer" to="." method="_on_tile_map_layer_child_entered_tree"]
 [connection signal="input_event" from="Station" to="." method="_on_station_input_event"]
 [connection signal="timeout" from="ShadowRail/ShadowTimer" to="ShadowRail" method="_on_timer_timeout"]

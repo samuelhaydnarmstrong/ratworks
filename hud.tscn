@@ -39,6 +39,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="StationOptions" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 640)
 
 [node name="Track" type="Button" parent="StationOptions"]
@@ -71,18 +72,20 @@ offset_bottom = 39.0
 text = "Bridging (100)
 "
 
-[node name="Inventory" type="Button" parent="StationOptions"]
-offset_left = 744.0
-offset_top = 42.0
-offset_right = 873.0
-offset_bottom = 73.0
-text = "Open Inventory"
-
 [node name="MoneyRefresh" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
+
+[node name="InventoryButton" type="Button" parent="."]
+visible = false
+offset_left = 744.0
+offset_top = 682.0
+offset_right = 873.0
+offset_bottom = 713.0
+text = "Open Inventory"
 
 [connection signal="open_inventory" from="." to="Inventory" method="_on_open_inventory"]
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]
-[connection signal="pressed" from="StationOptions/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="timeout" from="MoneyRefresh" to="." method="_on_money_refresh_timeout"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_pressed"]

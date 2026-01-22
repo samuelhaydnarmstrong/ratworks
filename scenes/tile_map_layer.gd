@@ -28,4 +28,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			if tileStatus:
 				selectedTileType = selectedTileType + " (" + tileStatus + ") "
 
-			main.local_update_selected_feature({"name": 'fog' if isFog else selectedTileType, "id": -1})
+			Globals.selectedCell = "fog" if isFog else selectedTileType

@@ -29,37 +29,37 @@ text = "Close"
 
 [node name="WorkerCost" type="Label" parent="."]
 layout_mode = 0
-offset_left = 288.0
+offset_left = 152.0
 offset_top = 64.0
-offset_right = 346.0
+offset_right = 210.0
 offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 
 [node name="WorkerCount" type="Label" parent="."]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 64.0
-offset_right = 250.0
-offset_bottom = 87.0
+offset_left = 280.0
+offset_top = 65.0
+offset_right = 338.0
+offset_bottom = 88.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 
 [node name="CostLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 288.0
+offset_left = 152.0
 offset_top = 39.0
-offset_right = 356.0
+offset_right = 220.0
 offset_bottom = 62.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Cost"
 
 [node name="QuantityLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 192.0
-offset_top = 39.0
-offset_right = 260.0
-offset_bottom = 62.0
+offset_left = 280.0
+offset_top = 40.0
+offset_right = 348.0
+offset_bottom = 63.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Quantity"
 
@@ -74,9 +74,9 @@ text = "Worker"
 
 [node name="WorkerBuyButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 352.0
+offset_left = 216.0
 offset_top = 62.0
-offset_right = 400.0
+offset_right = 264.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 14
 text = "Buy"
@@ -86,16 +86,45 @@ autostart = true
 
 [node name="DispatchButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 416.0
-offset_top = 62.0
-offset_right = 484.0
-offset_bottom = 90.0
+offset_left = 440.0
+offset_top = 208.0
+offset_right = 508.0
+offset_bottom = 236.0
 theme_override_font_sizes/font_size = 14
 disabled = true
 text = "Dispatch"
+
+[node name="DispatchLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 39.0
+offset_right = 508.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Dispatch"
+
+[node name="DispatchWorkerCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 64.0
+offset_right = 498.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="TransferWorkerButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 62.0
+offset_right = 416.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 14
+disabled = true
+text = ">"
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="WorkerBuyButton" to="." method="_on_worker_buy_button_pressed"]
 [connection signal="timeout" from="BudgetTimer" to="." method="_on_budget_timer_timeout"]
 [connection signal="pressed" from="DispatchButton" to="." method="_on_dispatch_button_pressed"]
+[connection signal="pressed" from="TransferWorkerButton" to="." method="_on_transfer_worker_button_pressed"]
