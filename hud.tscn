@@ -76,6 +76,14 @@ text = "Bridging (100)
 wait_time = 0.5
 autostart = true
 
+[node name="GarrisonButton" type="Button" parent="."]
+visible = false
+offset_left = 608.0
+offset_top = 682.0
+offset_right = 737.0
+offset_bottom = 713.0
+text = "Garrison"
+
 [node name="InventoryButton" type="Button" parent="."]
 visible = false
 offset_left = 744.0
@@ -88,4 +96,5 @@ text = "Open Inventory"
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]
 [connection signal="timeout" from="MoneyRefresh" to="." method="_on_money_refresh_timeout"]
+[connection signal="pressed" from="GarrisonButton" to="." method="_on_garrison_button_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_pressed"]

@@ -3,6 +3,7 @@ extends CanvasLayer
 signal buy_tunnelling
 signal place_first_track
 signal open_inventory
+signal garrison
 
 func _on_track_pressed() -> void:
 	place_first_track.emit()
@@ -32,3 +33,11 @@ func _on_money_refresh_timeout() -> void:
 		$InventoryButton.visible = true
 	else:
 		$InventoryButton.visible = false
+
+	if(Globals.selectedNode and Globals.selectedNode.get("hoveredArea")):
+		$GarrisonButton.visible = true
+	else:
+		$GarrisonButton.visible = false
+
+func _on_garrison_button_pressed() -> void:
+	garrison.emit()

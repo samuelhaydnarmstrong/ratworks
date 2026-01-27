@@ -161,6 +161,8 @@ settlementName = "Capital"
 [connection signal="input_event" from="Station" to="." method="_on_station_input_event"]
 [connection signal="timeout" from="ShadowRail/ShadowTimer" to="ShadowRail" method="_on_timer_timeout"]
 [connection signal="timeout" from="Rail/RailAnimationTimer" to="Rail" method="_on_rail_animation_timer_timeout"]
+[connection signal="area_entered" from="Train" to="." method="_on_train_area_entered"]
+[connection signal="input_event" from="Train" to="Train" method="_on_input_event"]
 [connection signal="timeout" from="MoneyTimer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="LastRailPoint" to="." method="_on_last_rail_point_input_event"]
 [connection signal="buy_tunnelling" from="HUD" to="." method="_on_hud_buy_tunnelling"]

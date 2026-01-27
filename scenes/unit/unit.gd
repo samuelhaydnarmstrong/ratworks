@@ -3,15 +3,18 @@ extends Area2D
 var desiredPosition: Vector2
 var id: int
 var inventory: Dictionary
+var hoveredArea: Area2D
 
 # Breaking encapsulation here
 @onready var tileMap = get_node('../TileMapLayer')
 @onready var fogOfWarTileMap = get_node('../FogOfWar')
 @onready var main = get_node('..')
+@onready var hud = get_node('../HUD')
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	desiredPosition = self.position
+	hud.garrison.connect(dock_unit)
 
 func _process(_delta: float) -> void:
 	if (self.position != desiredPosition):
@@ -46,3 +49,19 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		self.modulate = Color(0.0, 0.698, 0.0, 1.0)
 		Globals.selectedNode = self
+
+func _on_area_entered(area: Area2D) -> void:
+	if(area.name == "Station"):
+		hoveredArea = area
+
+func _on_area_exited(area: Area2D) -> void:
+	hoveredArea = null
+
+func dock_unit():
+	Globals.selectedNode = hoveredArea
+	# Copy across everything from the unit into the Station inventory.
+	var newInventory = Globals.selectedNode.inventory
+	for item in newInventory.keys():
+		newInventory[item] = newInventory[item] + inventory[item]
+		
+	self.queue_free()
