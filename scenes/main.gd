@@ -73,9 +73,6 @@ func _input(event):
 					await get_tree().create_timer(0.2).timeout
 					$Station.visible = true
 					$Station.position = event.position
-					
-func _on_timer_timeout() -> void:
-	Globals.money = Globals.money + 1
 
 func _on_last_rail_point_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():

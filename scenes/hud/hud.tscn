@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhbchgqecjgxk"]
 
-[ext_resource type="Script" uid="uid://pgkwqr4qj73v" path="res://hud.gd" id="1_37p78"]
-[ext_resource type="PackedScene" uid="uid://ybrko55rn3fe" path="res://inventory.tscn" id="2_64ctp"]
+[ext_resource type="Script" uid="uid://pgkwqr4qj73v" path="res://scenes/hud/hud.gd" id="1_37p78"]
+[ext_resource type="PackedScene" uid="uid://ybrko55rn3fe" path="res://scenes/hud/inventory/inventory.tscn" id="2_64ctp"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
