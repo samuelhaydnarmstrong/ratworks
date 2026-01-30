@@ -5,6 +5,8 @@ var id: int
 var inventory: Dictionary
 var hoveredArea: Area2D
 
+@export var dialogueFile: DialogueResource
+
 # Breaking encapsulation here
 @onready var tileMap = get_node('../TileMapLayer')
 @onready var fogOfWarTileMap = get_node('../FogOfWar')
@@ -65,3 +67,14 @@ func dock_unit():
 		newInventory[item] = newInventory[item] + inventory[item]
 		
 	self.queue_free()
+
+func _on_food_timer_timeout() -> void:
+	if(inventory.get("worker") > 0):
+		if(inventory.get("food") > 0):
+			inventory.set("food", inventory.get("food") - 1)
+		else:
+			inventory.set("worker", inventory.get("worker") - 1)
+			if (inventory.get("worker") == 0):
+				DialogueManager.show_dialogue_balloon(dialogueFile, 'unit_starved')
+				self.queue_free()
+		

@@ -19,3 +19,6 @@ Homesteader: Go away city boy!
 ~ settlement_connected
 Settlement connected to the railway
 => END
+
+~ unit_starved
+Some workers have starved to death

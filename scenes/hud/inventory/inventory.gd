@@ -98,6 +98,8 @@ func _on_ready() -> void:
 func _on_budget_timer_timeout() -> void:
 	var isDisInvEmpty = true
 	for item in items:
+		if (items[item].invNode.text != str(inventory[item])):
+			items[item].invNode.text = str(inventory[item])
 		if items[item].cost > Globals.money:
 			items[item].buyNode.disabled = true
 		else:
