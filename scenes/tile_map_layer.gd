@@ -27,5 +27,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var tileStatus = tile_data.get_custom_data("status")
 			if tileStatus:
 				selectedTileType = selectedTileType + " (" + tileStatus + ") "
+			
+			var isTileOccupied = main.grid[selectedCell.x][selectedCell.y]
+			if isTileOccupied == true:
+				selectedTileType = "[Occupied] " + selectedTileType
 
 			Globals.selectedCell = "fog" if isFog else selectedTileType
