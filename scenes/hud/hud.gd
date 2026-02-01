@@ -14,9 +14,7 @@ func _on_tunnelling_pressed() -> void:
 func _on_inventory_pressed() -> void:
 	open_inventory.emit()
 
-func _on_money_refresh_timeout() -> void:
-	$Money.text = str(Globals.money)
-	
+func _on_hud_refresh_timeout() -> void:	
 	if (Globals.selectedNode):
 		$SelectedFeature.text = Globals.selectedNode.name
 	elif(Globals.selectedCell):

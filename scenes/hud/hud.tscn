@@ -15,15 +15,6 @@ offset_right = 1080.0
 offset_bottom = 720.0
 color = Color(1, 1, 1, 0.81960785)
 
-[node name="Money" type="Label" parent="."]
-offset_left = 8.0
-offset_top = 648.0
-offset_right = 48.0
-offset_bottom = 690.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "0"
-
 [node name="SelectedFeature" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.22900002
@@ -72,7 +63,7 @@ offset_bottom = 39.0
 text = "Bridging (100)
 "
 
-[node name="MoneyRefresh" type="Timer" parent="."]
+[node name="HudRefresh" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
@@ -95,6 +86,6 @@ text = "Open Inventory"
 [connection signal="open_inventory" from="." to="Inventory" method="_on_open_inventory"]
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]
-[connection signal="timeout" from="MoneyRefresh" to="." method="_on_money_refresh_timeout"]
+[connection signal="timeout" from="HudRefresh" to="." method="_on_hud_refresh_timeout"]
 [connection signal="pressed" from="GarrisonButton" to="." method="_on_garrison_button_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_pressed"]

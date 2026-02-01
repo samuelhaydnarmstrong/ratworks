@@ -22,3 +22,9 @@ Settlement connected to the railway
 
 ~ unit_starved
 Some workers have starved to death
+
+~ fort
+Captain: What do you want?
+- Nothing
+- Request assistance
+	Captain: Not until I receive orders

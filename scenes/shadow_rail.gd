@@ -10,6 +10,7 @@ extends Line2D
 @onready var main = get_node('..')
 @onready var tileMapLayer = get_node('../TileMapLayer')
 @onready var fogOfWar = get_node('../FogOfWar')
+@export var station: Area2D
 
 func _on_timer_timeout() -> void:
 	if (main.isPlacingRail):
@@ -19,7 +20,7 @@ func _on_timer_timeout() -> void:
 		var shadowEndY = Globals.pixelsToGrid(self.get_point_position(1).y)
 		var isDangerousRoute = line(Vector2(shadowStartX, shadowStartY), Vector2(shadowEndX, shadowEndY))
 		var lengthOfShadowRail = self.get_point_position(0).distance_to(get_viewport().get_mouse_position())
-		if (lengthOfShadowRail > Globals.money or isDangerousRoute):
+		if (lengthOfShadowRail > station.inventory.money or isDangerousRoute):
 			self.set_default_color(Color(1.0, 0.0, 0.0, 0.2))
 			main.isRailValid = false
 		else:

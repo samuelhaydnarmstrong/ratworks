@@ -3,16 +3,25 @@ extends ColorRect
 signal dispatch_unit
 
 var inventory = Dictionary({
+	"money": 0,
 	"worker": 0,
 	"food": 0
 })
 
 var disInventory = Dictionary({
+	"money": 0,
 	"worker": 0,
 	"food": 0
 })
 
 var items = Dictionary({
+	"money": {
+		"cost": null,
+		"invNode": Label,
+		"disNode": Label,
+		"buyNode": null,
+		"disButton": Button
+	},
 	"worker": {
 		"cost": 10,
 		"invNode": Label,
@@ -43,7 +52,7 @@ func _on_open_inventory() -> void:
 func buy_item(item: String) -> void:
 	inventory[item] = inventory.get(item) + 1
 	items.get(item).get("invNode").text = str(inventory.get(item))
-	Globals.money = Globals.money - items.get(item).get("cost")
+	inventory.money = inventory.money - items.get(item).get("cost")
 	_on_budget_timer_timeout()
 
 func dispatch_item(item: String) -> void:
@@ -55,9 +64,7 @@ func dispatch_item(item: String) -> void:
 	
 	_on_budget_timer_timeout()
 
-func _on_ready() -> void:
-	$WorkerCost.text = str(items.get("worker").get("cost"))
-	
+func _on_ready() -> void:	
 	const TABLE_HEADINGS = ["Item", "Cost", "Buy", "Quantity", "Dispatch", "Quantity"]
 	for HEADING in TABLE_HEADINGS:
 		var itemLabelHeading = Label.new()
@@ -69,15 +76,19 @@ func _on_ready() -> void:
 		itemLabel.text = item
 		$InventoryAnchor.add_child(itemLabel)
 		
-		var itemCost = Label.new()
-		itemCost.text = str(items.get(item).get("cost"))
-		$InventoryAnchor.add_child(itemCost)
+		if (items.get(item).get("cost") != null):
+			var itemCost = Label.new()
+			itemCost.text = str(items.get(item).get("cost"))
+			$InventoryAnchor.add_child(itemCost)
 		
-		var itemBuy = Button.new()
-		itemBuy.text = "Buy"
-		itemBuy.connect("pressed", buy_item.bind(item))
-		$InventoryAnchor.add_child(itemBuy)
-		items[item].buyNode = itemBuy
+			var itemBuy = Button.new()
+			itemBuy.text = "Buy"
+			itemBuy.connect("pressed", buy_item.bind(item))
+			$InventoryAnchor.add_child(itemBuy)
+			items[item].buyNode = itemBuy
+		else:
+			$InventoryAnchor.add_child(Label.new())
+			$InventoryAnchor.add_child(Label.new())
 		
 		var itemQuantity = Label.new()
 		itemQuantity.text = str(inventory.get(item))
@@ -96,22 +107,20 @@ func _on_ready() -> void:
 		items[item].disNode = itemDispatchQuantity
 
 func _on_budget_timer_timeout() -> void:
-	var isDisInvEmpty = true
 	for item in items:
 		if (items[item].invNode.text != str(inventory[item])):
 			items[item].invNode.text = str(inventory[item])
-		if items[item].cost > Globals.money:
-			items[item].buyNode.disabled = true
-		else:
-			items[item].buyNode.disabled = false
+		if (items[item].buyNode != null):
+			if items[item].cost > inventory.money:
+				items[item].buyNode.disabled = true
+			else:
+				items[item].buyNode.disabled = false
 		if inventory[item] > 0:
 			items[item].disButton.disabled = false
 		else:
 			items[item].disButton.disabled = true
-		if disInventory[item] > 0:
-			isDisInvEmpty = false
 	
-	if isDisInvEmpty:
+	if disInventory.worker == 0:
 		$DispatchButton.disabled = true
 	else:
 		$DispatchButton.disabled = false

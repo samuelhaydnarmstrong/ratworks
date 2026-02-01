@@ -63,7 +63,7 @@ func _input(event):
 					$Rail.add_point_override(Vector2(event.position.x, event.position.y))
 					
 					$ShadowRail.set_point_position(0, event.position)
-					Globals.money = Globals.money - int(floor(lengthOfShadowRail))
+					$Station.inventory.money = $Station.inventory.money + int(floor(lengthOfShadowRail))
 					await get_tree().create_timer(0.2).timeout
 					$LastRailPoint.position = event.position
 					setOccupiedTiles($Rail.get_point_position($Rail.get_point_count()-2), $Rail.get_point_position($Rail.get_point_count()-1))
@@ -75,7 +75,6 @@ func _input(event):
 						$ShadowRail.visible = false
 						isPlacingRail = false
 						DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "end_game")
-						$MoneyTimer.stop()
 				
 				# If we're placing the first station check if the player has clicked on a WEST coast tile
 				elif(!$Rail.get_point_count() and selectedTileType == 'coast' and event.position.x < get_viewport().get_visible_rect().size.x / 2):				
@@ -113,8 +112,8 @@ func _on_hud_place_first_track() -> void:
 	Globals.selectedNode = $Rail
 
 func _on_hud_buy_tunnelling() -> void:
-	if (Globals.money > 100):
-		Globals.money = Globals.money - 100
+	if ($Station.inventory.money > 100):
+		$Station.inventory.money = $Station.inventory.money - 100
 		hasTunnellingSkill = true
 		$HUD/StationOptions/Tunnelling.visible = false
 		
