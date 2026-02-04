@@ -83,9 +83,17 @@ offset_right = 873.0
 offset_bottom = 713.0
 text = "Open Inventory"
 
+[node name="DisbandButton" type="Button" parent="."]
+offset_left = 528.0
+offset_top = 682.0
+offset_right = 600.0
+offset_bottom = 713.0
+text = "Disband"
+
 [connection signal="open_inventory" from="." to="Inventory" method="_on_open_inventory"]
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
 [connection signal="pressed" from="StationOptions/Tunnelling" to="." method="_on_tunnelling_pressed"]
 [connection signal="timeout" from="HudRefresh" to="." method="_on_hud_refresh_timeout"]
 [connection signal="pressed" from="GarrisonButton" to="." method="_on_garrison_button_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="DisbandButton" to="." method="_on_disband_button_pressed"]

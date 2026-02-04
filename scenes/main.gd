@@ -101,6 +101,7 @@ func _on_inventory_dispatch_unit(transferInventory: Dictionary) -> void:
 	unit.id = nextUnitIdToAssign
 	unit.inventory = transferInventory
 	nextUnitIdToAssign = nextUnitIdToAssign + 1
+	unit.name = 'Unit' + str(nextUnitIdToAssign)
 	unit.position = $Rail.get_point_position(0) + Vector2(0, 20)
 	add_child(unit)
 

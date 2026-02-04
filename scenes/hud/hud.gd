@@ -15,10 +15,14 @@ func _on_inventory_pressed() -> void:
 	open_inventory.emit()
 
 func _on_hud_refresh_timeout() -> void:	
+	if(Globals.selectedCell):
+		$SelectedFeature.text = Globals.selectedCell
+	else:
+		$SelectedFeature.text = ""
+		
+	# Node takes precidence over Cell since they use the same Label
 	if (Globals.selectedNode):
 		$SelectedFeature.text = Globals.selectedNode.name
-	elif(Globals.selectedCell):
-		$SelectedFeature.text = Globals.selectedCell
 	else:
 		$SelectedFeature.text = ""
 		
@@ -36,6 +40,15 @@ func _on_hud_refresh_timeout() -> void:
 		$GarrisonButton.visible = true
 	else:
 		$GarrisonButton.visible = false
+		
+	if (Globals.selectedNode and Globals.selectedNode.name.contains("Unit")):
+		$DisbandButton.visible = true
+	else:
+		$DisbandButton.visible = false
 
 func _on_garrison_button_pressed() -> void:
 	garrison.emit()
+
+func _on_disband_button_pressed() -> void:
+	if Globals.selectedNode:
+		Globals.selectedNode.queue_free()
