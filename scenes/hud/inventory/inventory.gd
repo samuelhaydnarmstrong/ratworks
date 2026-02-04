@@ -107,11 +107,15 @@ func _on_ready() -> void:
 		items[item].disNode = itemDispatchQuantity
 
 func _on_budget_timer_timeout() -> void:
+	var isSelectedUnit = false
+	if(Globals.selectedNode):
+		isSelectedUnit = Globals.selectedNode.name.contains("Unit")
+	
 	for item in items:
 		if (items[item].invNode.text != str(inventory[item])):
 			items[item].invNode.text = str(inventory[item])
 		if (items[item].buyNode != null):
-			if items[item].cost > inventory.money:
+			if items[item].cost > inventory.money or isSelectedUnit:
 				items[item].buyNode.disabled = true
 			else:
 				items[item].buyNode.disabled = false

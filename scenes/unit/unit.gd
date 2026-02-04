@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if (self.position != desiredPosition):
-		self.position = self.position.move_toward(desiredPosition,0.4)
+		self.position = self.position.move_toward(desiredPosition,0.1)
 	
 	# There has GOT to be a better way.  This reveals the FOW under the unit and adjacent tiles.
 	var x = floor(self.position.x / 64)
