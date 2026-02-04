@@ -1,7 +1,9 @@
 ~ start_game
-Welcome to the Ratworks demo!
 Click on a coast tile to place your first station
-ESC unselects units and features
+=> END
+
+~ first_station_placed
+Click on the station, open the inventory, buy workers and food, and dispatch them to explore the map
 => END
 
 ~ end_game

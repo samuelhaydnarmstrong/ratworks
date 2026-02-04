@@ -4,6 +4,8 @@ extends Area2D
 @export var settlementName: String
 @export var dialogueFileSection: String
 
+var inventory: Dictionary = { "money": 0, "worker": 0, "food": 0 }
+
 func _ready() -> void:
 	$Label.text = settlementName
 
@@ -12,3 +14,7 @@ func _on_area_entered(area: Area2D) -> void:
 		DialogueManager.show_dialogue_balloon(dialogueFile, 'settlement_connected')
 	if dialogueFile and dialogueFileSection:
 		DialogueManager.show_dialogue_balloon(dialogueFile, dialogueFileSection)
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+		Globals.selectedNode = self

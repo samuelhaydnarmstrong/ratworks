@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ca2i1qu87p07y" path="res://scenes/station.gd" id="6_muem4"]
 [ext_resource type="PackedScene" uid="uid://bhbchgqecjgxk" path="res://scenes/hud/hud.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://bn8y2ks4mymdt" path="res://scenes/rail.gd" id="6_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://c3t7sd8evr40" path="res://scenes/settlement.tscn" id="7_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://c3t7sd8evr40" path="res://scenes/settlement/settlement.tscn" id="7_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://cyk4q137quf7m" path="res://train.png" id="7_muem4"]
 [ext_resource type="PackedScene" uid="uid://1k7r008g2o71" path="res://camera_parent.tscn" id="7_o6xl0"]
 [ext_resource type="Resource" uid="uid://4kwt8jlgpj2h" path="res://scenes/dialogue/narrator.dialogue" id="8_muem4"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb1x7r0oiwyh4"]
+
+[ext_resource type="Script" uid="uid://cs6my7s1saq06" path="res://scenes/hud/recruitment.gd" id="1_q2rus"]
+
+[node name="Popup" type="Popup"]
+oversampling_override = 1.0
+title = "Recruitment"
+initial_position = 1
+size = Vector2i(121, 119)
+visible = true
+script = ExtResource("1_q2rus")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

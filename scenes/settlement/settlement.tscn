@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3t7sd8evr40"]
 
-[ext_resource type="Script" uid="uid://bxkivd5yy2qtk" path="res://scenes/homestead.gd" id="1_w8r1k"]
-[ext_resource type="Texture2D" uid="uid://cm3i4ouajw666" path="res://homestead.png" id="2_87fap"]
+[ext_resource type="Script" uid="uid://bxkivd5yy2qtk" path="res://scenes/settlement/settlement.gd" id="1_w8r1k"]
+[ext_resource type="Texture2D" uid="uid://cm3i4ouajw666" path="res://scenes/settlement/homestead.png" id="2_87fap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
 size = Vector2(32, 32)
@@ -27,3 +27,4 @@ horizontal_alignment = 1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

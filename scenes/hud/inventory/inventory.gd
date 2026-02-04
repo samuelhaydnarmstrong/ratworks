@@ -23,10 +23,10 @@ var items = Dictionary({
 		"disButton": Button
 	},
 	"worker": {
-		"cost": 10,
+		"cost": null,
 		"invNode": Label,
 		"disNode": Label,
-		"buyNode": Button,
+		"buyNode": null,
 		"disButton": Button
 	},
 	"food": {

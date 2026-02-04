@@ -45,7 +45,7 @@ func _input(event):
 			var mouseGridY = floor(event.position.y / 64)
 			var selectedTileType = tileMap.get_cell_tile_data(Vector2i(mouseGridX,mouseGridY)).get_custom_data('name')
 			if (Globals.selectedNode == self && selectedTileType != 'water'):
-				desiredPosition = event.position			
+				desiredPosition = event.position
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:

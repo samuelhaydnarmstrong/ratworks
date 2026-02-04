@@ -5,6 +5,11 @@ signal place_first_track
 signal open_inventory
 signal garrison
 
+func _ready():
+	$SelectedFeature.text = ""
+	$Inventory.visible = false
+	$RecruitmentButton.visible = false
+
 func _on_track_pressed() -> void:
 	place_first_track.emit()
 
@@ -45,6 +50,11 @@ func _on_hud_refresh_timeout() -> void:
 		$DisbandButton.visible = true
 	else:
 		$DisbandButton.visible = false
+		
+	if (Globals.selectedNode and Globals.selectedNode.name == "Capital"):
+		$RecruitmentButton.visible = true
+	else:
+		$RecruitmentButton.visible = false
 
 func _on_garrison_button_pressed() -> void:
 	garrison.emit()
@@ -52,3 +62,6 @@ func _on_garrison_button_pressed() -> void:
 func _on_disband_button_pressed() -> void:
 	if Globals.selectedNode:
 		Globals.selectedNode.queue_free()
+
+func _on_recruitment_button_pressed() -> void:
+	$Popup.popup()

@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhbchgqecjgxk"]
+[gd_scene load_steps=4 format=3 uid="uid://bhbchgqecjgxk"]
 
 [ext_resource type="Script" uid="uid://pgkwqr4qj73v" path="res://scenes/hud/hud.gd" id="1_37p78"]
 [ext_resource type="PackedScene" uid="uid://ybrko55rn3fe" path="res://scenes/hud/inventory/inventory.tscn" id="2_64ctp"]
+[ext_resource type="PackedScene" uid="uid://bb1x7r0oiwyh4" path="res://scenes/hud/recruitment.tscn" id="3_c45xl"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
 
 [node name="Inventory" parent="." instance=ExtResource("2_64ctp")]
-visible = false
 
 [node name="BackgroundPanel" type="ColorRect" parent="."]
 offset_top = 640.0
@@ -21,46 +21,31 @@ anchor_left = 0.22900002
 anchor_top = 1.0380001
 anchor_right = 0.23
 anchor_bottom = 1.0380001
-offset_left = -119.32002
+offset_left = -239.32002
 offset_top = -99.36011
-offset_right = -8.400024
+offset_right = -111.40001
 offset_bottom = -50.360107
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Selected Feature"
 
 [node name="StationOptions" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, 640)
 
 [node name="Track" type="Button" parent="StationOptions"]
-offset_left = 744.0
+offset_left = 368.0
 offset_top = 8.0
-offset_right = 872.0
+offset_right = 496.0
 offset_bottom = 39.0
 text = "Start Track"
 
 [node name="Tunnelling" type="Button" parent="StationOptions"]
 offset_left = 944.0
-offset_top = 42.0
-offset_right = 1075.0
-offset_bottom = 73.0
-text = "Tunnelling (100)
-"
-
-[node name="Skills" type="Label" parent="StationOptions"]
-offset_left = 888.0
-offset_right = 936.0
-offset_bottom = 80.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Skills"
-
-[node name="Bridging" type="Button" parent="StationOptions"]
-offset_left = 944.0
 offset_top = 8.0
 offset_right = 1075.0
 offset_bottom = 39.0
-text = "Bridging (100)
+text = "Tunnelling (100)
 "
 
 [node name="HudRefresh" type="Timer" parent="."]
@@ -68,27 +53,34 @@ wait_time = 0.5
 autostart = true
 
 [node name="GarrisonButton" type="Button" parent="."]
-visible = false
-offset_left = 608.0
-offset_top = 682.0
-offset_right = 737.0
-offset_bottom = 713.0
+offset_left = 504.0
+offset_top = 648.0
+offset_right = 633.0
+offset_bottom = 679.0
 text = "Garrison"
 
 [node name="InventoryButton" type="Button" parent="."]
-visible = false
-offset_left = 744.0
-offset_top = 682.0
-offset_right = 873.0
-offset_bottom = 713.0
-text = "Open Inventory"
+offset_left = 640.0
+offset_top = 648.0
+offset_right = 769.0
+offset_bottom = 679.0
+text = "Inventory"
 
 [node name="DisbandButton" type="Button" parent="."]
-offset_left = 528.0
+offset_left = 504.0
 offset_top = 682.0
-offset_right = 600.0
+offset_right = 633.0
 offset_bottom = 713.0
 text = "Disband"
+
+[node name="RecruitmentButton" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 682.0
+offset_right = 769.0
+offset_bottom = 713.0
+text = "Recruitment"
+
+[node name="Popup" parent="." instance=ExtResource("3_c45xl")]
 
 [connection signal="open_inventory" from="." to="Inventory" method="_on_open_inventory"]
 [connection signal="pressed" from="StationOptions/Track" to="." method="_on_track_pressed"]
@@ -97,3 +89,4 @@ text = "Disband"
 [connection signal="pressed" from="GarrisonButton" to="." method="_on_garrison_button_pressed"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="DisbandButton" to="." method="_on_disband_button_pressed"]
+[connection signal="pressed" from="RecruitmentButton" to="." method="_on_recruitment_button_pressed"]

@@ -84,6 +84,7 @@ func _input(event):
 					await get_tree().create_timer(0.2).timeout
 					$Station.visible = true
 					$Station.position = event.position
+					DialogueManager.show_dialogue_balloon(load("res://scenes/dialogue/narrator.dialogue"), "first_station_placed")
 
 func _on_last_rail_point_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
@@ -102,7 +103,7 @@ func _on_inventory_dispatch_unit(transferInventory: Dictionary) -> void:
 	unit.inventory = transferInventory
 	nextUnitIdToAssign = nextUnitIdToAssign + 1
 	unit.name = 'Unit' + str(nextUnitIdToAssign)
-	unit.position = $Rail.get_point_position(0) + Vector2(0, 20)
+	unit.position = Globals.selectedNode.position + Vector2(0, 20)
 	add_child(unit)
 
 func _on_hud_place_first_track() -> void:
