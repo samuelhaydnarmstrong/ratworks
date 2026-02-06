@@ -4,7 +4,8 @@ extends Area2D
 @export var settlementName: String
 @export var dialogueFileSection: String
 
-var inventory: Dictionary = { "money": 0, "worker": 0, "food": 0 }
+var inventory = Globals.EMPTY_INVENTORY.duplicate()
+var type = "settlement"
 
 func _ready() -> void:
 	$Label.text = settlementName

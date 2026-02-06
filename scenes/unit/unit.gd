@@ -4,6 +4,8 @@ var desiredPosition: Vector2
 var id: int
 var inventory: Dictionary
 var hoveredArea: Area2D
+var type = "unit"
+var speed = 0.1
 
 @export var dialogueFile: DialogueResource
 
@@ -20,7 +22,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if (self.position != desiredPosition):
-		self.position = self.position.move_toward(desiredPosition,0.1)
+		if (inventory.get("horse") >= inventory.get("worker")):
+			speed = 0.1 * 2
+		
+		self.position = self.position.move_toward(desiredPosition, speed)
 	
 	# There has GOT to be a better way.  This reveals the FOW under the unit and adjacent tiles.
 	var x = floor(self.position.x / 64)

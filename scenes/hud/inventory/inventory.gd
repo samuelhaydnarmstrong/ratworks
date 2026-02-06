@@ -2,17 +2,8 @@ extends ColorRect
 
 signal dispatch_unit
 
-var inventory = Dictionary({
-	"money": 0,
-	"worker": 0,
-	"food": 0
-})
-
-var disInventory = Dictionary({
-	"money": 0,
-	"worker": 0,
-	"food": 0
-})
+var inventory = Globals.EMPTY_INVENTORY.duplicate()
+var disInventory = Globals.EMPTY_INVENTORY.duplicate()
 
 var items = Dictionary({
 	"money": {
@@ -31,6 +22,13 @@ var items = Dictionary({
 	},
 	"food": {
 		"cost": 5,
+		"invNode": Label,
+		"disNode": Label,
+		"buyNode": Button,
+		"disButton": Button
+	},
+	"horse": {
+		"cost": 50,
 		"invNode": Label,
 		"disNode": Label,
 		"buyNode": Button,
@@ -64,7 +62,7 @@ func dispatch_item(item: String) -> void:
 	
 	_on_budget_timer_timeout()
 
-func _on_ready() -> void:	
+func _on_ready() -> void:		
 	const TABLE_HEADINGS = ["Item", "Cost", "Buy", "Quantity", "Dispatch", "Quantity"]
 	for HEADING in TABLE_HEADINGS:
 		var itemLabelHeading = Label.new()

@@ -46,12 +46,12 @@ func _on_hud_refresh_timeout() -> void:
 	else:
 		$GarrisonButton.visible = false
 		
-	if (Globals.selectedNode and Globals.selectedNode.name.contains("Unit")):
+	if (Globals.selectedNode and Globals.selectedNode.get("type") == "unit"):
 		$DisbandButton.visible = true
 	else:
 		$DisbandButton.visible = false
 		
-	if (Globals.selectedNode and Globals.selectedNode.name == "Capital"):
+	if (Globals.selectedNode and Globals.selectedNode.get("type") == "settlement"):
 		$RecruitmentButton.visible = true
 	else:
 		$RecruitmentButton.visible = false
