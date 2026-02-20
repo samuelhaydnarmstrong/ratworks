@@ -4,6 +4,7 @@ signal buy_tunnelling
 signal place_first_track
 signal open_inventory
 signal garrison
+signal time_of_day_changed
 
 func _ready():
 	$SelectedFeature.text = ""
@@ -65,3 +66,12 @@ func _on_disband_button_pressed() -> void:
 
 func _on_recruitment_button_pressed() -> void:
 	$Popup.popup()
+
+func _on_time_of_day_timer_timeout() -> void:
+	if Globals.timeOfDay == "DAY":
+		Globals.timeOfDay = "NIGHT"
+		$TimeOfDayLabel.text = "NIGHT"
+	else:
+		Globals.timeOfDay = "DAY"
+		$TimeOfDayLabel.text = "DAY"
+	time_of_day_changed.emit()

@@ -21,3 +21,5 @@ func pixelsToGrid(pixelPosition):
 	return floor(pixelPosition / 64)
 
 const EMPTY_INVENTORY = {"money": 0, "food": 0, "worker": 0, "horse": 0}
+
+var timeOfDay = 'DAY'

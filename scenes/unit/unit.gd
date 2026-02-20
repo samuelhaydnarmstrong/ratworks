@@ -19,9 +19,10 @@ var speed = 0.1
 func _ready() -> void:
 	desiredPosition = self.position
 	hud.garrison.connect(dock_unit)
+	hud.time_of_day_changed.connect(time_of_day_changed)
 
 func _process(_delta: float) -> void:
-	if (self.position != desiredPosition):
+	if (self.position != desiredPosition and Globals.timeOfDay == "DAY"):
 		if (inventory.get("horse") >= inventory.get("worker")):
 			speed = 0.1 * 2
 		
@@ -73,7 +74,11 @@ func dock_unit():
 		
 	self.queue_free()
 
-func _on_food_timer_timeout() -> void:
+func time_of_day_changed():
+	if Globals.timeOfDay == "DAY":
+		consume_food()
+
+func consume_food() -> void:
 	if(inventory.get("worker") > 0):
 		if(inventory.get("food") > 0):
 			inventory.set("food", inventory.get("food") - 1)
