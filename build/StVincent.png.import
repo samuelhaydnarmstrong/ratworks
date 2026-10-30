@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blm6rc1ubqel"
-path="res://.godot/imported/StVincent.png-a22b8c310e5e31d8000aa66eba36b596.ctex"
+uid="uid://bgtqqluc1mcjx"
+path="res://.godot/imported/StVincent.png-0ad6b89e5a17051b6be4c597908e94fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://build/StVincent.png"
-dest_files=["res://.godot/imported/StVincent.png-a22b8c310e5e31d8000aa66eba36b596.ctex"]
+source_file="res://client-export/StVincent.png"
+dest_files=["res://.godot/imported/StVincent.png-0ad6b89e5a17051b6be4c597908e94fd.ctex"]
 
 [params]
 
